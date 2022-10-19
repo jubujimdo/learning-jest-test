@@ -26,17 +26,14 @@ class LinkedList {
 
   pop() {
     let lastNode = this.root;
+    let prev = lastNode;
     let i = 0;
     while (lastNode.next !== null) {
+      prev = lastNode;
       lastNode = lastNode.next;
       i++;
     }
-    lastNode = this.root;
-    while (i !== 1) {
-      lastNode = lastNode.next;
-      i--;
-    }
-    lastNode.next = null;
+    prev.next = null;
   }
 
   addToPosition(position, newNode) {
@@ -59,7 +56,6 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     dataArray.push(currentNode.data);
-    console.log(dataArray);
   }
 
   reverseLinkList() {
