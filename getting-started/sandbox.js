@@ -1,5 +1,3 @@
-const { number } = require("yargs");
-
 function greeting(lang) {
   if (lang === undefined || typeof lang !== "string") {
     throw new Error("Please use a string");
