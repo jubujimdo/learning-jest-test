@@ -1,11 +1,11 @@
-class Node {
+export class Node {
   constructor(data, next) {
     this.data = data;
     this.next = next || null;
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor(root) {
     this.root = root;
   }
@@ -56,6 +56,7 @@ class LinkedList {
       currentNode = currentNode.next;
     }
     dataArray.push(currentNode.data);
+    return dataArray;
   }
 
   reverseLinkList() {
@@ -84,6 +85,3 @@ class LinkedList {
     this.root = prev;
   }
 }
-
-module.exports.node = Node;
-module.exports.linkedlist = LinkedList;

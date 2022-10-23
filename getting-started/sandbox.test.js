@@ -1,4 +1,4 @@
-const greeting = require("./sandbox");
+import { greeting } from "./sandbox";
 
 test("Greeting in English", () => {
   expect(greeting("EN")).toBe("Hello in English");
