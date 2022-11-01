@@ -21,4 +21,20 @@ function checkDuplicateArray(testArray) {
   return isDuplicate;
 }
 
+function generateArray(n) {
+  const a = [];
+  for (let i = 0; i < n; i++) {
+    a.push(i);
+  }
+  return a;
+}
+
+const testArray = generateArray(100);
+
+console.time("First");
+
+checkDuplicateArray(testArray);
+
+console.timeEnd("First");
+
 module.exports.checkDuplicateArray = checkDuplicateArray;

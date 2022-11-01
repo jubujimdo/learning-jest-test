@@ -11,14 +11,22 @@ export class LinkedList {
   }
 
   append(newLastNode) {
-    let lastNode = this.root;
-    while (lastNode.next !== null) {
-      lastNode = lastNode.next;
+    let currentNode = this.root;
+    if (currentNode === null) {
+      this.root = new Node(newLastNode, null);
+      return;
     }
-    lastNode.next = new Node(newLastNode, null);
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+    }
+    currentNode.next = new Node(newLastNode, null);
   }
 
   addToStart(newFirstNode) {
+    if (this.root === null) {
+      this.root = new Node(newFirstNode, null);
+      return;
+    }
     const currentLL = { ...this.root };
     this.root.data = newFirstNode;
     this.root.next = new Node(currentLL.data, currentLL.next);
@@ -28,6 +36,10 @@ export class LinkedList {
     let lastNode = this.root;
     let prev = lastNode;
     let i = 0;
+    if (this.root === null || this.root.next === null) {
+      this.root = null;
+      return;
+    }
     while (lastNode.next !== null) {
       prev = lastNode;
       lastNode = lastNode.next;
@@ -40,6 +52,14 @@ export class LinkedList {
     let lastNode = this.root;
     let i = position;
     while (i !== 0) {
+      if (lastNode === null) {
+        this.root = new Node(newNode, null);
+        return;
+      }
+      if (lastNode.next === null) {
+        lastNode.next = new Node(newNode, null);
+        return;
+      }
       lastNode = lastNode.next;
       i--;
     }
@@ -51,6 +71,9 @@ export class LinkedList {
   print() {
     let currentNode = this.root;
     const dataArray = [];
+    if (currentNode === null) {
+      return dataArray;
+    }
     while (currentNode.next != null) {
       dataArray.push(currentNode.data);
       currentNode = currentNode.next;
