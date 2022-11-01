@@ -4,13 +4,14 @@ function hasDuplicates(testArray) {
   } else if (testArray.length === 0) {
     throw new Error("Array must not be empty");
   }
-  const s = {};
+  let s = new Set();
 
   for (let i = 0; i < testArray.length; i++) {
-    if (testArray[i] in s) {
+    console.log(s);
+    if (s.has(testArray[i])) {
       return true;
     }
-    s[testArray[i]] = true;
+    s.add(testArray[i]);
   }
   return false;
 }
