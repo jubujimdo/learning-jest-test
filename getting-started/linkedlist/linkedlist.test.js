@@ -76,21 +76,25 @@ describe("Test Linkedlist methods", () => {
 
   describe("Add nodes to certain position", () => {
     test("Add new node to certain position in the middle", () => {
-      linkedlist.addToPosition(1, 7);
+      linkedlist.addToPosition(7, 1);
       expect(linkedlist.print()).toMatchObject([1, 7, 2]);
     });
     test("Add new node to certain position at the beginning", () => {
-      linkedlist.addToPosition(0, 7);
+      linkedlist.addToPosition(7, 0);
       expect(linkedlist.print()).toMatchObject([7, 1, 2]);
     });
     test("Add new node to certain position at the end", () => {
-      linkedlist.addToPosition(2, 7);
+      linkedlist.addToPosition(7, 2);
       expect(linkedlist.print()).toMatchObject([1, 2, 7]);
     });
     test("Add new node to empty Linkedlist", () => {
       let emptyList = new LinkedList(null);
-      emptyList.addToPosition(1, 7);
+      emptyList.addToPosition(7, 1);
       expect(emptyList.print()).toMatchObject([7]);
+    });
+    test("Add new node to certain position longer than array length", () => {
+      linkedlist.addToPosition(7, 4);
+      expect(linkedlist.print()).toMatchObject([1, 2, 7]);
     });
   });
 });

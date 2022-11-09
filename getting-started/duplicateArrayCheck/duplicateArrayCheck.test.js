@@ -9,9 +9,12 @@ describe("Test duplicates in arrays", () => {
     });
     test("Array has duplicate strings", () => {
       const duplicateArray = ["Hello", 2, 3, "Hello"];
-      expect(hasDuplicates(duplicateArray)).toBeTruthy();
+      expect(() => hasDuplicates(duplicateArray)).toThrow(
+        new Error("Please make sure your Array contains only numbers")
+      );
     });
   });
+
   describe("Array has no duplicates", () => {
     test("Array with numbers has no duplicates", () => {
       const uniqueArray = [1, 2, 3, 4];
@@ -19,13 +22,18 @@ describe("Test duplicates in arrays", () => {
     });
     test("Mixed array has no duplicates", () => {
       const uniqueArray = [1, 2, "Hello", 4];
-      expect(hasDuplicates(uniqueArray)).toBeFalsy();
+      expect(() => hasDuplicates(uniqueArray)).toThrow(
+        new Error("Please make sure your Array contains only numbers")
+      );
     });
     test("Mixed array with number and number as string has no duplicates", () => {
       const uniqueArray = [1, 2, "2", 4];
-      expect(hasDuplicates(uniqueArray)).toBeFalsy();
+      expect(() => hasDuplicates(uniqueArray)).toThrow(
+        new Error("Please make sure your Array contains only numbers")
+      );
     });
   });
+
   describe("Test error messages", () => {
     test("Function gets wrong parameter type", () => {
       expect(() => hasDuplicates("Wrong type")).toThrow(

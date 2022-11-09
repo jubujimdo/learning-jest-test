@@ -14,12 +14,13 @@ export class LinkedList {
     let currentNode = this.root;
     if (currentNode === null) {
       this.root = new Node(newLastNode, null);
-      return;
+      return this.root;
     }
     while (currentNode.next !== null) {
       currentNode = currentNode.next;
     }
     currentNode.next = new Node(newLastNode, null);
+    return this.root;
   }
 
   addToStart(newFirstNode) {
@@ -48,7 +49,7 @@ export class LinkedList {
     prev.next = null;
   }
 
-  addToPosition(position, newNode) {
+  addToPosition(newNode, position) {
     let lastNode = this.root;
     let i = position;
     while (i !== 0) {
