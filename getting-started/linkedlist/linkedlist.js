@@ -1,24 +1,33 @@
-class Node {
+export class Node {
   constructor(data, next) {
     this.data = data;
     this.next = next || null;
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor(root) {
     this.root = root;
   }
 
   append(newLastNode) {
-    let lastNode = this.root;
-    while (lastNode.next !== null) {
-      lastNode = lastNode.next;
+    let currentNode = this.root;
+    if (currentNode === null) {
+      this.root = new Node(newLastNode, null);
+      return this.root;
     }
-    lastNode.next = new Node(newLastNode, null);
+    while (currentNode.next !== null) {
+      currentNode = currentNode.next;
+    }
+    currentNode.next = new Node(newLastNode, null);
+    return this.root;
   }
 
   addToStart(newFirstNode) {
+    if (this.root === null) {
+      this.root = new Node(newFirstNode, null);
+      return;
+    }
     const currentLL = { ...this.root };
     this.root.data = newFirstNode;
     this.root.next = new Node(currentLL.data, currentLL.next);
@@ -26,23 +35,32 @@ class LinkedList {
 
   pop() {
     let lastNode = this.root;
+    let prev = lastNode;
     let i = 0;
+    if (this.root === null || this.root.next === null) {
+      this.root = null;
+      return;
+    }
     while (lastNode.next !== null) {
+      prev = lastNode;
       lastNode = lastNode.next;
       i++;
     }
-    lastNode = this.root;
-    while (i !== 1) {
-      lastNode = lastNode.next;
-      i--;
-    }
-    lastNode.next = null;
+    prev.next = null;
   }
 
-  addToPosition(position, newNode) {
+  addToPosition(newNode, position) {
     let lastNode = this.root;
     let i = position;
     while (i !== 0) {
+      if (lastNode === null) {
+        this.root = new Node(newNode, null);
+        return;
+      }
+      if (lastNode.next === null) {
+        lastNode.next = new Node(newNode, null);
+        return;
+      }
       lastNode = lastNode.next;
       i--;
     }
@@ -54,12 +72,15 @@ class LinkedList {
   print() {
     let currentNode = this.root;
     const dataArray = [];
+    if (currentNode === null) {
+      return dataArray;
+    }
     while (currentNode.next != null) {
       dataArray.push(currentNode.data);
       currentNode = currentNode.next;
     }
     dataArray.push(currentNode.data);
-    console.log(dataArray);
+    return dataArray;
   }
 
   reverseLinkList() {
@@ -88,6 +109,3 @@ class LinkedList {
     this.root = prev;
   }
 }
-
-module.exports.node = Node;
-module.exports.linkedlist = LinkedList;

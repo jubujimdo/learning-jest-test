@@ -1,6 +1,4 @@
-const { number } = require("yargs");
-
-function greeting(lang) {
+export function greeting(lang) {
   if (lang === undefined || typeof lang !== "string") {
     throw new Error("Please use a string");
   }
@@ -16,5 +14,3 @@ function greeting(lang) {
       return "Hello in Italian";
   }
 }
-
-module.exports = greeting;
