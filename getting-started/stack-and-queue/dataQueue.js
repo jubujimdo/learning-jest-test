@@ -19,7 +19,7 @@ export class DataQueue {
 
   put(newLastNode) {
     let currentNode = this.root;
-    if (currentNode === null) {
+    if (currentNode === null || currentNode === undefined) {
       this.root = new Node(newLastNode, null);
       return this.root;
     }
@@ -32,13 +32,18 @@ export class DataQueue {
 
   get() {
     let firstNode = this.root;
-    if (firstNode.next === null) {
-      firstNode.data = firstNode.next;
-      return;
+    if (firstNode === undefined) {
+      throw new Error("Your queue is empty");
     }
+    if (firstNode.next === null) {
+      const result = firstNode.data;
+      firstNode.data = firstNode.next;
+      return result;
+    }
+    const result = firstNode.data;
     firstNode.data = firstNode.next.data;
     firstNode.next = firstNode.next.next;
-    return;
+    return result;
   }
 
   print() {
